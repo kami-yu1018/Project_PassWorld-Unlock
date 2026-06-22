@@ -92,7 +92,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 //------------------------------------------------------------------------------
 //	ƒL[‚ğ‰Ÿ‚µ‚½uŠÔ‚Ìˆ—
 //------------------------------------------------------------------------------
-bool PushHitkey(int key)
+bool PushHitKey(int key)
 {
 	if (KeyFrame[key] == 1)
 	{

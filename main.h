@@ -11,3 +11,6 @@
 //	•Ï”
 char key_buffer[256];
 int KeyFrame[256];
+
+//	ŠÖ”
+bool PushHitKey(int key);
