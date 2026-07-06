@@ -1,5 +1,5 @@
-#include"Factory.h"
-#include"Data.h"
+#include "Factory.h"
+#include "Player.h"
 
 //　プレイヤーデータは不変（基礎ステータスは不変でレベルによって数値変動する）なので静的で定義する
 const PlayerData PlayerFactory::PlayerTable[] = {
