@@ -134,6 +134,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PlayerFactory.cpp" />
     <ClCompile Include="Scene_level.cpp" />
+    <ClCompile Include="Scene_setting.cpp" />
     <ClCompile Include="Scene_title.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -144,6 +145,7 @@
     <ClInclude Include="main.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Scene_level.h" />
+    <ClInclude Include="Scene_setting.h" />
     <ClInclude Include="Scene_title.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
