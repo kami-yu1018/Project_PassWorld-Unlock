@@ -146,6 +146,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Scene_bass.h" />
     <ClInclude Include="Scene_end.h" />
     <ClInclude Include="Scene_level.h" />
     <ClInclude Include="Scene_play.h" />
