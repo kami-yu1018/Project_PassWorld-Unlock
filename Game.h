@@ -1,6 +1,12 @@
 #pragma once
 
+//	ヘッダーファイルのインクルード
 #include "main.h"
+#include "Scene_title.h"
+#include "Scene_level.h"
+#include "Scene_setting.h"
+#include "Scene_play.h"
+#include "Scene_end.h"
 
 //　ゲームのシーン
 enum {
@@ -21,6 +27,13 @@ public:
 	{
 		void Init();
 	}
+
+	//	インスタンスの生成
+	Scene_title		title_obj;
+	Scene_level		level_obj;
+	Scene_setting	set_obj;
+	Scene_play		play_obj;
+	Scene_end		end_obj;
 
 	//	関数
 	void Init();
