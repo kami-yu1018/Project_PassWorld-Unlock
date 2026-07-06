@@ -13,3 +13,15 @@ struct PlayerData
 	int spd;
 };
 
+//	敵のデータ構造体
+struct EnemyData
+{
+	int ID;
+	const char Name[256];
+	int hp;
+	int mp;
+	int atk;
+	int def;
+	int spd;
+	int exp;
+};
