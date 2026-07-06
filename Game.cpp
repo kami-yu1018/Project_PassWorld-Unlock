@@ -14,14 +14,46 @@ void Game::Init()
 //------------------------------------------------------------------------------
 void Game::Update()
 {
+	switch (State)
+	{
+	case GAME_STATE_TITLE:		//　タイトル画面
+		break;
 
+	case GAME_STATE_LEVEL:		//　レベル選択画面	
+		break;
+
+	case GAME_STATE_SETTING:	//　パーティー編成画面
+		break;
+
+	case GAME_STATE_PLAY:		//	バトル画面
+		break;
+
+	case GAME_STATE_END:		//	終了画面
+		break;
+	}
 }
 //------------------------------------------------------------------------------
 //	描画処理
 //------------------------------------------------------------------------------
 void Game::Render()
 {
+	switch (State)
+	{
+	case GAME_STATE_TITLE:		//　タイトル画面
+		break;
 
+	case GAME_STATE_LEVEL:		//　レベル選択画面	
+		break;
+
+	case GAME_STATE_SETTING:	//　パーティー編成画面
+		break;
+
+	case GAME_STATE_PLAY:		//	バトル画面
+		break;
+
+	case GAME_STATE_END:		//	終了画面
+		break;
+	}
 }
 //------------------------------------------------------------------------------
 //	終了処理
