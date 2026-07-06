@@ -133,6 +133,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PlayerFactory.cpp" />
+    <ClCompile Include="Scene_end.cpp" />
     <ClCompile Include="Scene_level.cpp" />
     <ClCompile Include="Scene_play.cpp" />
     <ClCompile Include="Scene_setting.cpp" />
@@ -145,6 +146,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Scene_end.h" />
     <ClInclude Include="Scene_level.h" />
     <ClInclude Include="Scene_play.h" />
     <ClInclude Include="Scene_setting.h" />
