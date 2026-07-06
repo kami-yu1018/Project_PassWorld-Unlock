@@ -1,12 +1,11 @@
 #pragma once
+#include "Scene_bass.h"
 
-
-class Scene_play
+class Scene_play:public Scene_bass
 {
 public:
 	Scene_play()
 	{
-		Init();
 	}
 
 	void Init();
