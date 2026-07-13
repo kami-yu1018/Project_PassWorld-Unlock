@@ -62,7 +62,7 @@ void Game::Update()
 		{
 			//	‚Æ‚è‚ ‚¦‚¸“K“–‚È•Ï”‚Å–„‚ß‚Ä‚¨‚­
 			
-			play_obj.Init(a,b,d,c,e);	//	‰Šú‰»ˆ—
+			play_obj.Init(level_obj.lv,b,d,c,e);	//	‰Šú‰»ˆ—
 			init = 1;
 		}
 		play_obj.Update();
