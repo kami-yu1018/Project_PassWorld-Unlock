@@ -4,6 +4,7 @@
 class Scene_level :public Scene_bass
 {
 public:
+
 	Scene_level()
 	{ 
 	}

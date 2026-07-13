@@ -3,12 +3,14 @@
 class Scene_bass
 {
 public:
+	int next = 0;
+
 	Scene_bass()
 	{
 	}
 
-	virtual void Init();
-	virtual void Update();
-	virtual void Render();
-	virtual void Exit();
+	void Init();
+	void Update();
+	void Render();
+	void Exit();
 };

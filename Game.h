@@ -22,6 +22,10 @@ class Game
 public:
 	//	ゲームの状態
 	int State;
+	//	初期化状態（０：初期化されていない　１：初期化処理を完了している）
+	bool init = 0;
+	int a = 0, b = 0, c = 0, d = 0, e = 0;
+
 	//	コンストラクタ
 	Game() :State(GAME_STATE_TITLE)
 	{
