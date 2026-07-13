@@ -8,7 +8,8 @@ public:
 	{
 	}
 
-	void Init();
+	//	引数に難易度とプレイヤーのID
+	void Init(int level,int p_1,int p_2,int p_3,int p_4);
 	void Update();
 	void Render();
 	void Exit();
