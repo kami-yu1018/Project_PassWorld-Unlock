@@ -9,6 +9,6 @@ public:
 	}
 	void Init();
 	void Update();
-	void Render();
+	void Render(int end);
 	void Exit();
 };

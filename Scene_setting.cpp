@@ -2,6 +2,9 @@
 
 void Scene_setting::Init()
 {
+	//	nextの初期化
+	next = 0;
+
 	//	初期のスタメンの設定
 
 }
@@ -19,11 +22,18 @@ void Scene_setting::Update()
 
 	//	スタートテキストのところでエンターを押したら、次のシーンへ進む
 	//	現在確定している番号がScene_play.cppで生成される
+	if (PushHitKey(KEY_INPUT_RETURN)) 
+	{
+		next = 1;
+	}
 
 }
 
 void Scene_setting::Render()
 {
+	//	どこのシーンか（要消去）
+	DrawString(100, 100, "setting", GetColor(25, 255, 255));
+
 	//	背景
 	
 	//	メンバーのビジュアル

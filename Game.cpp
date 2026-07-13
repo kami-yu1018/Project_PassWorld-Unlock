@@ -107,7 +107,7 @@ void Game::Render()
 		break;
 
 	case GAME_STATE_END:		//	I—¹‰æ–Ê
-		end_obj.Render();
+		end_obj.Render(play_obj.end);
 		break;
 	}
 }

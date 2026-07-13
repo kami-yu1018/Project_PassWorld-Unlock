@@ -1,4 +1,5 @@
 #include "main.h"
+#include "Game.h"
 
 //	•Ï”
 char key_buffer[256];

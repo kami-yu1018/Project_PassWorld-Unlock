@@ -1,4 +1,6 @@
 #pragma once
+#include "DxLib.h"
+#include "main.h"
 
 class Scene_bass
 {
