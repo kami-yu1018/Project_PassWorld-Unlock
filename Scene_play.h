@@ -4,7 +4,6 @@
 class Scene_play:public Scene_bass
 {
 public:
-	int end = 0;
 
 	Scene_play()
 	{

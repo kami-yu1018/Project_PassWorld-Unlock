@@ -52,12 +52,12 @@ void Scene_play::Update()
 	//	敵全員のHPが０になったらプレイヤーの勝利
 	if (PushHitKey(KEY_INPUT_1))
 	{
-		end = 1;
+		next = 1;
 	}
 	//	プレイヤー全員のHPが０になったら敗北
 	if (PushHitKey(KEY_INPUT_2))
 	{
-		end = 2;
+		next = 2;
 	}
 }
 //------------------------------------------------------------------------------

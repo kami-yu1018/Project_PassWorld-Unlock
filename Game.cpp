@@ -74,6 +74,12 @@ void Game::Update()
 		break;
 
 	case GAME_STATE_END:		//	èIóπâÊñ 
+		if (init == 0)
+		{
+			end_obj.Init();
+			init = 1;
+		}
+
 		end_obj.Update();
 		if (end_obj.next == 1)
 		{
@@ -107,7 +113,7 @@ void Game::Render()
 		break;
 
 	case GAME_STATE_END:		//	èIóπâÊñ 
-		end_obj.Render(play_obj.end);
+		end_obj.Render(play_obj.next);
 		break;
 	}
 }
