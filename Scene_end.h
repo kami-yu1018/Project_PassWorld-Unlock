@@ -3,6 +3,8 @@
 
 class Scene_end :public Scene_bass
 {
+	int end_image[2];
+
 public:
 	Scene_end()
 	{

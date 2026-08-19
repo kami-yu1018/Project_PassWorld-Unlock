@@ -3,6 +3,8 @@
 
 class Scene_title :public Scene_bass
 {
+	int title_image;
+
 public:
 	Scene_title()
 	{

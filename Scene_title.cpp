@@ -2,6 +2,7 @@
 
 void Scene_title::Init()
 {
+	title_image = LoadGraph("data/picture/title.png");
 	//	nextの初期化
 	next = 0;
 }
@@ -19,11 +20,9 @@ void Scene_title::Update()
 void Scene_title::Render()
 {
 	//	背景
-
-	//	タイトル
-	DrawString(100, 100, "title", GetColor(255, 255, 255));
+	DrawGraph(0, 0, title_image,TRUE);
 	//	"Push -Key To Start"のテキスト
-
+	DrawString(700, 800, "Push Enter To Start",GetColor(255,255,255));
 
 }
 

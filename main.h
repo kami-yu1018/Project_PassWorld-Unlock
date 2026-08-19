@@ -5,8 +5,8 @@
 #include <ctime>
 
 //	’è”
-#define WINDOW_W 1280
-#define WINDOW_H 720
+#define WINDOW_W 1662
+#define WINDOW_H 946
 
 //	ŠÖ”
 bool PushHitKey(int key);

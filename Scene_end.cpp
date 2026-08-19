@@ -2,6 +2,10 @@
 
 void Scene_end::Init()
 {
+	//	画像の読み込み
+	end_image[0] = LoadGraph("data/picture/GameClear.png");
+	end_image[1] = LoadGraph("data/picture/GameOver.png");
+
 	//	nextの初期化
 	next = 0;
 }
@@ -21,15 +25,14 @@ void Scene_end::Render(int end)
 	//	ゲームクリア
 	if (end == 1)
 	{
-		//	どこのシーンか（要消去）
-		DrawString(100, 100, "clear", GetColor(25, 255, 255));
+		DrawGraph(0, 0, end_image[0], TRUE);
+
 	}
 
 	//	ゲームオーバー
 	else if (end == 2)
 	{
-		//	どこのシーンか（要消去）
-		DrawString(100, 100, "gameover", GetColor(25, 255, 255));
+		DrawGraph(0, 0, end_image[1], TRUE);
 	}
 
 }
