@@ -86,10 +86,13 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		//	裏画面の描画を表に反映
 		ScreenFlip();
 
-		//	ループを抜ける
+		//	ESC+CTRLでゲームを修了する処理
 		if (CheckHitKey(KEY_INPUT_ESCAPE) == 1)
 		{
-			break;
+			if (CheckHitKey(KEY_INPUT_LCONTROL) || CheckHitKey(KEY_INPUT_RCONTROL))
+			{
+				break;
+			}
 		}
 	}
 
