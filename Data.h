@@ -11,6 +11,12 @@ struct PlayerData
 	int atk;
 	int def;
 	int spd;
+
+	int g_hp;
+	int g_mp;
+	int g_atk;
+	int g_def;
+	int g_spd;
 };
 
 //	敵のデータ構造体
