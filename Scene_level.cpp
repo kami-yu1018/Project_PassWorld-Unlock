@@ -14,7 +14,7 @@ void Scene_level::Init()
 void Scene_level::Update()
 {		   
 	//	上下キーで難易度の変更
-	if (PushHitKey(KEY_INPUT_UP))
+	if (PushHitKey(KEY_INPUT_LEFT))
 	{
 		//	上に行くほど低難易度なのでレベルを減らす
 		lv--;
@@ -26,7 +26,7 @@ void Scene_level::Update()
 		}
 		
 	}
-	if (PushHitKey(KEY_INPUT_DOWN))
+	if (PushHitKey(KEY_INPUT_RIGHT))
 	{
 		//	下に行くほど高難易度にするのでレベルを増やす
 		lv++;
@@ -38,7 +38,6 @@ void Scene_level::Update()
 		}
 
 	}
-	//	選択している難易度でshiftキーを押すと、敵のビジュアルと説明を表示
 
 	//	エンターを押したら難易度を確定
 	//	（Scene_playで難易度を渡せるようにする）
