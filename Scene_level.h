@@ -7,7 +7,7 @@ public:
 
 	//	難易度（０：easy　１：nomal　２：hard）
 	int lv = 0;
-
+	int background_image = 0;
 
 	Scene_level()
 	{ 

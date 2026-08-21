@@ -2,6 +2,9 @@
 
 void Scene_level::Init()
 {		   
+	//	背景画像の読み込み
+	background_image = LoadGraph("data/picture/background.png");
+
 	//	nextの初期化
 	next = 0;
 	//	最初に表示する難易度はeasy
@@ -47,11 +50,8 @@ void Scene_level::Update()
 		   
 void Scene_level::Render()
 {	
-	//	どこのシーンか（要消去）
-	DrawString(100, 100, "level", GetColor(25, 255, 255));
-
 	//	背景
-
+	DrawGraph(0, 0, background_image, TRUE);
 	//	難易度の画像
 }		   
 		   

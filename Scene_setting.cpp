@@ -2,6 +2,9 @@
 
 void Scene_setting::Init()
 {
+	//	背景画像の読み込み
+	background_image = LoadGraph("data/picture/background.png");
+
 	//	nextの初期化
 	next = 0;
 
@@ -31,11 +34,8 @@ void Scene_setting::Update()
 
 void Scene_setting::Render()
 {
-	//	どこのシーンか（要消去）
-	DrawString(100, 100, "setting", GetColor(25, 255, 255));
-
 	//	背景
-	
+	DrawGraph(0, 0, background_image, TRUE);
 	//	メンバーのビジュアル
 
 	//	名前

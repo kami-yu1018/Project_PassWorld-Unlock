@@ -26,6 +26,7 @@ void Scene_end::Render(int end)
 	if (end == 1)
 	{
 		DrawGraph(0, 0, end_image[0], TRUE);
+		DrawString(800, 600, "Push Enter to Title", GetColor(255, 255, 255));
 
 	}
 
@@ -33,6 +34,7 @@ void Scene_end::Render(int end)
 	else if (end == 2)
 	{
 		DrawGraph(0, 0, end_image[1], TRUE);
+		DrawString(800, 600, "Push Enter to Title", GetColor(255, 255, 255));
 	}
 
 }

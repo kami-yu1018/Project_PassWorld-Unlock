@@ -3,6 +3,8 @@
 
 class Scene_setting :public Scene_bass
 {
+	int background_image = 0;
+
 public:
 	Scene_setting()
 	{
