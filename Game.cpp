@@ -60,9 +60,7 @@ void Game::Update()
 	case GAME_STATE_PLAY:		//	ƒoƒgƒ‹‰æ–Ê
 		if (init == 0)
 		{
-			//	‚Æ‚è‚ ‚¦‚¸“K“–‚È•Ï”‚Å–„‚ß‚Ä‚¨‚­
-			
-			play_obj.Init(level_obj.lv,b,d,c,e);	//	‰Šú‰»ˆ—
+			play_obj.Init(level_obj.lv,set_obj.mem_ID[0], set_obj.mem_ID[1], set_obj.mem_ID[2], set_obj.mem_ID[3]);	//	‰Šú‰»ˆ—
 			init = 1;
 		}
 		play_obj.Update();

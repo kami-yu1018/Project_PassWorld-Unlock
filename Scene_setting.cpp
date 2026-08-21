@@ -9,15 +9,36 @@ void Scene_setting::Init()
 	next = 0;
 
 	//	初期のスタメンの設定
-
+	mem_ID[0] = KENSI;
+	mem_ID[1] = MAHOUTUKAi;
+	mem_ID[2] = SOURYO;
+	mem_ID[3] = TOUZOKU;
 }
 
 void Scene_setting::Update()
 {
 	//	左右キーで移動
-
-	//	エンターキーで決定
-
+	if (PushHitKey(KEY_INPUT_RIGHT))
+	{
+		num++;
+		if (num > 4)
+		{
+			num = 0;
+		}
+	}
+	if (PushHitKey(KEY_INPUT_LEFT))
+	{
+		num--;
+		if (num < 0)
+		{
+			num = 3;
+		}
+	}
+	//	スペースキーで決定
+	if (PushHitKey(KEY_INPUT_RETURN) && num<4)
+	{
+		charachenge_switch = 1;
+	}
 	//	スタメン画面でエンターを押すと、キャラクター選択欄を表示
 
 	//	キャラクター選択欄でエンターを押すと、現在選択しているキャラクターをスタメンに変更する
@@ -25,7 +46,7 @@ void Scene_setting::Update()
 
 	//	スタートテキストのところでエンターを押したら、次のシーンへ進む
 	//	現在確定している番号がScene_play.cppで生成される
-	if (PushHitKey(KEY_INPUT_RETURN)) 
+	if (PushHitKey(KEY_INPUT_RETURN) && num == 4) 
 	{
 		next = 1;
 	}
