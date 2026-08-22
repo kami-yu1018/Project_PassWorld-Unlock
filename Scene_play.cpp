@@ -10,9 +10,38 @@ void Scene_play::Init(int level, int p_1, int p_2, int p_3, int p_4)
 	//	nextの初期化
 	next = 0;
 
-	//	レベルから敵を生成
+	int level;	//	難易度によるプレイヤーのレベル用の変数
 
+	//	レベルから敵を生成
+	switch (level)
+	{
+	case 0:
+		enemy[0] = EnemyFactory::CreateEnemy(1);
+		enemy[1] = EnemyFactory::CreateEnemy(2);
+		enemy[2] = EnemyFactory::CreateEnemy(3);
+		break;
+	case 1:
+		break;
+	case 2:
+		break;
+	}
+	
 	//	プレイヤーIDからプレイヤーを生成
+	player[0] = PlayerFactory::CreatePlayer(p_1);
+	player[1] = PlayerFactory::CreatePlayer(p_2);
+	player[2] = PlayerFactory::CreatePlayer(p_3);
+	player[3] = PlayerFactory::CreatePlayer(p_4);
+	
+	for(int i=0;i<4;++i)
+	{
+		player[i]->Data.hp = player[i]->Data.hp + player[i]->Data.g_hp * level;
+		player[i]->Data.mp = player[i]->Data.mp + player[i]->Data.g_mp * level;
+		player[i]->Data.atk = player[i]->Data.atk + player[i]->Data.g_atk * level;
+		player[i]->Data.def = player[i]->Data.def + player[i]->Data.g_def * level;
+		player[i]->Data.spd = player[i]->Data.spd + player[i]->Data.g_spd * level;
+		
+		
+	}
 }
 //------------------------------------------------------------------------------
 // 　更新処理
