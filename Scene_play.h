@@ -10,6 +10,21 @@ class Scene_play:public Scene_bass
 	bool e_alive[3] = { 0,0,0 };
 	Player* player[4] = {};
 	bool p_alive[4] = {1,1,1,1};
+
+	struct TurnActor
+	{
+		bool isEnemy;
+		int index;
+	};
+
+	static const int player_count = 4;
+	static const int enemy_count = 3;
+	static const int actor_count = player_count + enemy_count;
+
+	TurnActor turnOrder[actor_count];
+	int TurnIndex = 0;
+	int enemy_num;
+
 public:
 
 	Scene_play()
@@ -21,4 +36,8 @@ public:
 	void Update();
 	void Render();
 	void Exit();
+
+	void CreateTurn(int enemy_num);
+
+	void NextTurn(int enemy_num);
 };
