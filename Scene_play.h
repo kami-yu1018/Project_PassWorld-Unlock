@@ -23,7 +23,7 @@ class Scene_play:public Scene_bass
 
 	TurnActor turnOrder[actor_count];
 	int TurnIndex = 0;
-	int enemy_num;
+	int enemy_num = 0;
 
 public:
 

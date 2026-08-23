@@ -61,7 +61,7 @@ void Scene_play::Update()
 	if(actor.isEnemy)
 	{
 		//	ランダムなターゲティング
-
+		int random = GetRand(4);
 		//	攻撃
 
 			//	ダメージ計算
