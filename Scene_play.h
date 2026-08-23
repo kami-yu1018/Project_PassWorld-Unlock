@@ -6,6 +6,8 @@
 
 class Scene_play:public Scene_bass
 {
+	int background = 0;
+
 	Enemy* enemy[3] = {};
 	bool e_alive[3] = { 0,0,0 };
 	Player* player[4] = {};

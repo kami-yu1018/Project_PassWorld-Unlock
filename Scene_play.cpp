@@ -7,12 +7,14 @@
 //------------------------------------------------------------------------------
 void Scene_play::Init(int level, int p_1, int p_2, int p_3, int p_4)
 {
+	//	背景画像の読み込み
+	background = LoadGraph("data/picture/battle_field.png");
+
 	//	nextの初期化
 	next = 0;
 
-	int level;	//	難易度によるプレイヤーのレベル用の変数
+	int p_lv;
 
-	
 	//	レベルから敵を生成
 	switch (level)
 	{
@@ -23,10 +25,15 @@ void Scene_play::Init(int level, int p_1, int p_2, int p_3, int p_4)
 
 		enemy_num = 3;
 
+		p_lv = 10;
 		break;
 	case 1:
+
+		p_lv = 40;
 		break;
 	case 2:
+		p_lv = 70;
+
 		break;
 	}
 	
@@ -38,11 +45,11 @@ void Scene_play::Init(int level, int p_1, int p_2, int p_3, int p_4)
 	
 	for(int i=0;i<4;++i)
 	{
-		player[i]->Data.hp = player[i]->Data.hp + player[i]->Data.g_hp * level;
-		player[i]->Data.mp = player[i]->Data.mp + player[i]->Data.g_mp * level;
-		player[i]->Data.atk = player[i]->Data.atk + player[i]->Data.g_atk * level;
-		player[i]->Data.def = player[i]->Data.def + player[i]->Data.g_def * level;
-		player[i]->Data.spd = player[i]->Data.spd + player[i]->Data.g_spd * level;
+		player[i]->Data.hp = player[i]->Data.hp + player[i]->Data.g_hp * p_lv;
+		player[i]->Data.mp = player[i]->Data.mp + player[i]->Data.g_mp * p_lv;
+		player[i]->Data.atk = player[i]->Data.atk + player[i]->Data.g_atk * p_lv;
+		player[i]->Data.def = player[i]->Data.def + player[i]->Data.g_def * p_lv;
+		player[i]->Data.spd = player[i]->Data.spd + player[i]->Data.g_spd * p_lv;
 	}
 
 	//	プレイヤーと敵のSPDを見て、順番を決める
@@ -109,7 +116,7 @@ void Scene_play::Render()
 	DrawString(100, 100, "play", GetColor(25, 255, 255));
 
 	//	背景
-
+	DrawGraph(0, 0, background, TRUE);
 	//	敵キャラクター
 
 	//	味方
