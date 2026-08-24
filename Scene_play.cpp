@@ -73,6 +73,8 @@ void Scene_play::Update()
 	//	現在の順番を見る
 	TurnActor actor = turnOrder[TurnIndex];
 
+	//	フラグのみを更新（Render側で使うため）
+	currentIsEnemy = actor.isEnemy;
 
 	//	敵の場合
 	if(actor.isEnemy)
@@ -85,7 +87,7 @@ void Scene_play::Update()
 
 
 		/////////////////////////////////////////////////////
-		DrawString(120, 100, "敵のターン", GetColor(255, 255, 255));
+		
 	}
 
 
@@ -94,7 +96,7 @@ void Scene_play::Update()
 	{
 		//	行動の選択（上下キー）
 
-		//	スキルを選択したらスキルの選択
+		//	行動を選択したらスキルの選択
 
 		//	ターゲット選択
 
@@ -106,7 +108,7 @@ void Scene_play::Update()
 
 
 		//////////////////////////////////////////////////////
-		DrawString(120, 100, "味方のターン", GetColor(255, 255, 255));
+		
 	}
 
 		
@@ -128,9 +130,6 @@ void Scene_play::Update()
 //------------------------------------------------------------------------------
 void Scene_play::Render()
 {
-	//	どこのシーンか（要消去）
-	DrawString(100, 100, "play", GetColor(25, 255, 255));
-
 	//	背景
 	DrawGraph(0, 0, background, TRUE);
 	//	敵キャラクター
@@ -151,6 +150,14 @@ void Scene_play::Render()
 		DrawFormatString(100, 100, GetColor(255, 255, 255), "%s", enemy[0]->Data.Name);
 	}
 
+	if (currentIsEnemy)
+	{
+		DrawString(100, 120, "敵のターン", GetColor(255, 255, 255));
+	}
+	else
+	{
+		DrawString(100, 120, "味方のターン", GetColor(255, 255, 255));
+	}
 }
 //------------------------------------------------------------------------------
 // 　終了処理

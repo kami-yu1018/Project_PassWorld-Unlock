@@ -8,11 +8,17 @@ class Scene_play:public Scene_bass
 {
 	int background = 0;
 
+	//	“G
 	Enemy* enemy[3] = {};
 	bool e_alive[3] = { 0,0,0 };
+	//	–¡•û
 	Player* player[4] = {};
 	bool p_alive[4] = {1,1,1,1};
 
+	//	Œ»İ‚Ìƒ^[ƒ“‚ª“G‚©‚Ç‚¤‚©‚ğ”»’f
+	bool currentIsEnemy = false;
+
+	//	“G–¡•û‚Ì‡”Ô‚ğŒˆ‚ß‚é—p‚Ì\‘¢‘Ì
 	struct TurnActor
 	{
 		bool isEnemy;
