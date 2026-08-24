@@ -25,33 +25,59 @@ void Scene_setting::Init()
 
 void Scene_setting::Update()
 {
-	//	左右キーで移動
-	if (PushHitKey(KEY_INPUT_RIGHT))
+	if(charachenge_switch==0)
 	{
-		num++;
-		if (num > 4)
+		//	左右キーで移動
+		if (PushHitKey(KEY_INPUT_RIGHT))
 		{
-			num = 0;
+			num++;
+			if (num > 4)
+			{
+				num = 0;
+			}
+		}
+		if (PushHitKey(KEY_INPUT_LEFT))
+		{
+			num--;
+			if (num < 0)
+			{
+				num = 3;
+			}
+		}
+		//	スペースキーで決定
+		if (PushHitKey(KEY_INPUT_RETURN) && num < 4)
+		{
+			charachenge_switch = 1;
+			chara_num = mem_ID[num];
 		}
 	}
-	if (PushHitKey(KEY_INPUT_LEFT))
+	else
 	{
-		num--;
-		if (num < 0)
+		//	スタメン画面でエンターを押すと、キャラクター選択欄を表示
+		//	左右キーで移動
+		if (PushHitKey(KEY_INPUT_RIGHT))
 		{
-			num = 3;
+			chara_num++;
+			if (chara_num > 7)
+			{
+				chara_num = 1;
+			}
+		}
+		if (PushHitKey(KEY_INPUT_LEFT))
+		{
+			chara_num--;
+			if (chara_num < 1)
+			{
+				chara_num = 7;
+			}
+		}
+		mem_ID[num] = chara_num;
+		//	スペースキーで決定
+		if (PushHitKey(KEY_INPUT_RETURN))
+		{
+			charachenge_switch = 0;
 		}
 	}
-	//	スペースキーで決定
-	if (PushHitKey(KEY_INPUT_RETURN) && num<4)
-	{
-		charachenge_switch = 1;
-	}
-	//	スタメン画面でエンターを押すと、キャラクター選択欄を表示
-
-	//	キャラクター選択欄でエンターを押すと、現在選択しているキャラクターをスタメンに変更する
-	//	すでにスタメンに入っているキャラクターは選択できないようにする
-
 	//	スタートテキストのところでエンターを押したら、次のシーンへ進む
 	//	現在確定している番号がScene_play.cppで生成される
 	if (PushHitKey(KEY_INPUT_RETURN) && num == 4) 
@@ -76,9 +102,7 @@ void Scene_setting::Render()
 		DrawExtendGraph(0+(350*i)+130, 0+250, 307+(350*i)+130, 460+250, player_image[mem_ID[i]], TRUE);
 	}
 	//	名前
-
-	//	役職アイコン
-
+	
 	//	スタートテキスト
 }
 

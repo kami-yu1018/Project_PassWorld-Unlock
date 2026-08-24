@@ -23,6 +23,8 @@ public:
 	int mem_ID[4];
 	//	現在選択している枠
 	int num = 0;
+	//	現在選択しているキャラクター
+	int chara_num = 1;
 	
 	bool charachenge_switch = 0;
 
