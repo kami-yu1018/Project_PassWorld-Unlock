@@ -26,63 +26,44 @@ void Game::Update()
 		{
 			State = GAME_STATE_LEVEL;
 			init = 0;
+			level_obj.Init();	//	初期化処理
 		}
 		break;
 
 	case GAME_STATE_LEVEL:	//　レベル選択画面	
-		if (init == 0)
-		{
-			level_obj.Init();	//	初期化処理
-			init = 1;
-		}
 		level_obj.Update();
 		if (level_obj.next == 1)
 		{
 			State = GAME_STATE_SETTING;
-			init = 0;
+			set_obj.Init();	//	初期化処理
 		}
 		break;
 
 	case GAME_STATE_SETTING:	//　パーティー編成画面
-		if (init == 0)
-		{
-			set_obj.Init();	//	初期化処理
-			init = 1;
-		}
 		set_obj.Update();
 		if (set_obj.next == 1)
 		{
 			State = GAME_STATE_PLAY;
-			init = 0;
+			play_obj.Init(level_obj.lv, set_obj.mem_ID[0], set_obj.mem_ID[1], set_obj.mem_ID[2], set_obj.mem_ID[3]);	//	初期化処理
 		}
 		break;
 
 	case GAME_STATE_PLAY:		//	バトル画面
-		if (init == 0)
-		{
-			play_obj.Init(level_obj.lv,set_obj.mem_ID[0], set_obj.mem_ID[1], set_obj.mem_ID[2], set_obj.mem_ID[3]);	//	初期化処理
-			init = 1;
-		}
 		play_obj.Update();
 		if (play_obj.next > 0)
 		{
 			State = GAME_STATE_END;
-			init = 0;
+			end_obj.Init();
 		}
 		break;
 
 	case GAME_STATE_END:		//	終了画面
-		if (init == 0)
-		{
-			end_obj.Init();
-			init = 1;
-		}
-
 		end_obj.Update();
 		if (end_obj.next == 1)
 		{
 			State = GAME_STATE_TITLE;
-			init = 0;
+			title_obj.Init();
+			init = 1;
 		}
 		break;
 	}

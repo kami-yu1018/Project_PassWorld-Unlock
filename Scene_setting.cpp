@@ -65,10 +65,15 @@ void Scene_setting::Render()
 {
 	//	背景
 	DrawGraph(0, 0, background_image, TRUE);
+
+	int box_x = 130;
+	int box_y = 250;
+	DrawBox(box_x + (350 * num), box_y, box_x + (307 + (350 * num)), box_y+460, GetColor(0, 0, 255), TRUE);
+
 	//	メンバーのビジュアル
 	for(int i=0;i<4;++i)
 	{
-		DrawExtendGraph(100+(100*i), 100, 256+(100*i), 384, player_image[mem_ID[0]], TRUE);
+		DrawExtendGraph(0+(350*i)+130, 0+250, 307+(350*i)+130, 460+250, player_image[mem_ID[i]], TRUE);
 	}
 	//	名前
 
