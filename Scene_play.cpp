@@ -28,10 +28,20 @@ void Scene_play::Init(int level, int p_1, int p_2, int p_3, int p_4)
 		p_lv = 10;
 		break;
 	case 1:
+		enemy[0] = EnemyFactory::CreateEnemy(1);
+		enemy[1] = EnemyFactory::CreateEnemy(2);
+		enemy[2] = EnemyFactory::CreateEnemy(3);
 
+		enemy_num = 3;
 		p_lv = 40;
 		break;
 	case 2:
+		enemy[0] = EnemyFactory::CreateEnemy(1);
+		enemy[1] = EnemyFactory::CreateEnemy(2);
+		enemy[2] = EnemyFactory::CreateEnemy(3);
+
+		enemy_num = 3;
+
 		p_lv = 70;
 
 		break;
@@ -72,6 +82,10 @@ void Scene_play::Update()
 		//	攻撃
 
 			//	ダメージ計算
+
+
+		/////////////////////////////////////////////////////
+		DrawString(120, 100, "敵のターン", GetColor(255, 255, 255));
 	}
 
 
@@ -90,10 +104,12 @@ void Scene_play::Update()
 
 			//	ダメージの計算
 
+
+		//////////////////////////////////////////////////////
+		DrawString(120, 100, "味方のターン", GetColor(255, 255, 255));
 	}
 
 		
-
 
 
 	//	敵全員のHPが０になったらプレイヤーの勝利
@@ -126,6 +142,15 @@ void Scene_play::Render()
 	//	ターゲット（攻撃前のみ）
 
 	//	カットイン（攻撃時のみ）
+
+
+	///////////////////////////////////////////////////////////////
+	//	確認テキスト
+	if(enemy[0]!=nullptr)
+	{
+		DrawFormatString(100, 100, GetColor(255, 255, 255), "%s", enemy[0]->Data.Name);
+	}
+
 }
 //------------------------------------------------------------------------------
 // 　終了処理
