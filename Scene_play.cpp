@@ -161,8 +161,8 @@ void Scene_play::CreateTurn(int enemy_num)
 				: player[turnOrder[i].index]->Data.spd;
 
 			int spd2 = turnOrder[j].isEnemy
-				? enemy[turnOrder[i].index]->Data.spd
-				: player[turnOrder[i].index]->Data.spd;
+				? enemy[turnOrder[j].index]->Data.spd
+				: player[turnOrder[j].index]->Data.spd;
 
 			if (spd1 < spd2)
 			{
@@ -185,7 +185,7 @@ void Scene_play::NextTurn(int enemy_num)
 	}
 	for (int i = player_count; i < player_count + enemy_num; ++i)
 	{
-		IsAlive[i] = e_alive;
+		IsAlive[i] = e_alive[i - player_count];
 	}
 
 	do
