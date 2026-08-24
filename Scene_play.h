@@ -3,6 +3,7 @@
 #include"Factory.h"
 #include"Player.h"
 #include"Enemy.h"
+#include"Scene_setting.h"
 
 class Scene_play:public Scene_bass
 {
@@ -32,6 +33,8 @@ class Scene_play:public Scene_bass
 	TurnActor turnOrder[actor_count];
 	int TurnIndex = 0;
 	int enemy_num = 0;
+
+	Scene_setting set_obj;
 
 public:
 

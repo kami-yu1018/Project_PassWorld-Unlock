@@ -1,24 +1,28 @@
 #pragma once
 #include "Scene_bass.h"
 
-enum
-{
-	BLANC,
-	KENSI,
-	MADOUSI,
-	SOURYO,
-	TOUZOKU,
-	ZYUKISI,
-	BUSHI,
-	GINYUSIZIN
-};
+
 
 class Scene_setting :public Scene_bass
 {
+	enum
+	{
+		BLANC,
+		KENSI,
+		MADOUSI,
+		SOURYO,
+		TOUZOKU,
+		ZYUKISI,
+		BUSHI,
+		GINYUSIZIN
+	};
+
 	int background_image = 0;
+	
+public:
 	int player_image[8] = { 0,0,0,0,0,0,0,0 };
 
-public:
+
 	//	スタメンのIDを入れる変数（4枠）
 	int mem_ID[4];
 	//	現在選択している枠

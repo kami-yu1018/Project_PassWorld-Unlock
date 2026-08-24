@@ -85,7 +85,6 @@ void Scene_play::Update()
 
 			//	ダメージ計算
 
-
 		/////////////////////////////////////////////////////
 		
 	}
@@ -135,7 +134,7 @@ void Scene_play::Render()
 	//	敵キャラクター
 
 	//	味方
-
+	DrawRectGraph(300, 300, 0,0,1024,1024, set_obj.player_image[player[0]->Data.ID], TRUE, FALSE);
 	//	HP,MP,APP
 
 	//	ターゲット（攻撃前のみ）
