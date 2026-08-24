@@ -4,13 +4,21 @@ void Scene_setting::Init()
 {
 	//	背景画像の読み込み
 	background_image = LoadGraph("data/picture/background.png");
+	//	プレイヤー画像の読み込み
+	player_image[KENSI] = LoadGraph("data/picture/kensi.png");
+	player_image[MADOUSI] = LoadGraph("data/picture/madousi.png");
+	player_image[SOURYO] = LoadGraph("data/picture/souryo.png");
+	player_image[TOUZOKU] = LoadGraph("data/picture/touzoku.png");
+	player_image[ZYUKISI] = LoadGraph("data/picture/zyukisi.png");
+	player_image[BUSHI] = LoadGraph("data/picture/bushi.png");
+	player_image[GINYUSIZIN] = LoadGraph("data/picture/ginyusizin.png");
 
 	//	nextの初期化
 	next = 0;
 
 	//	初期のスタメンの設定
 	mem_ID[0] = KENSI;
-	mem_ID[1] = MAHOUTUKAi;
+	mem_ID[1] = MADOUSI;
 	mem_ID[2] = SOURYO;
 	mem_ID[3] = TOUZOKU;
 }
@@ -58,7 +66,10 @@ void Scene_setting::Render()
 	//	背景
 	DrawGraph(0, 0, background_image, TRUE);
 	//	メンバーのビジュアル
-
+	for(int i=0;i<4;++i)
+	{
+		DrawExtendGraph(100+(100*i), 100, 256+(100*i), 384, player_image[mem_ID[0]], TRUE);
+	}
 	//	名前
 
 	//	役職アイコン

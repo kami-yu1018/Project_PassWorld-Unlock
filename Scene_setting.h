@@ -5,7 +5,7 @@ enum
 {
 	BLANC,
 	KENSI,
-	MAHOUTUKAi,
+	MADOUSI,
 	SOURYO,
 	TOUZOKU,
 	ZYUKISI,
@@ -16,6 +16,7 @@ enum
 class Scene_setting :public Scene_bass
 {
 	int background_image = 0;
+	int player_image[8] = { 0,0,0,0,0,0,0,0 };
 
 public:
 	//	スタメンのIDを入れる変数（4枠）
