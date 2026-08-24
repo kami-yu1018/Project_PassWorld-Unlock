@@ -5,6 +5,10 @@ void Scene_level::Init()
 	//	”wŒi‰æ‘œ‚Ì“Ç‚İ‚İ
 	background_image = LoadGraph("data/picture/background.png");
 
+	level_image[0] = LoadGraph("data/picture/easy.png");
+	level_image[1] = LoadGraph("data/picture/normal.png");
+	level_image[2] = LoadGraph("data/picture/hard.png");
+
 	//	next‚Ì‰Šú‰»
 	next = 0;
 	//	Å‰‚É•\¦‚·‚é“ïˆÕ“x‚Íeasy
@@ -52,6 +56,15 @@ void Scene_level::Render()
 	//	”wŒi
 	DrawGraph(0, 0, background_image, TRUE);
 	//	“ïˆÕ“x‚Ì‰æ‘œ
+	for(int i=0;i<3;++i)
+	{
+		if (lv == i) SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255);
+		else SetDrawBlendMode(DX_BLENDMODE_ALPHA, 125);
+
+		DrawGraph(100 + (500 * i), 100, level_image[i], TRUE);
+
+		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+	}
 }		   
 		   
 void Scene_level::Exit()
