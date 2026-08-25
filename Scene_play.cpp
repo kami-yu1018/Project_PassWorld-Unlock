@@ -93,17 +93,38 @@ void Scene_play::Update()
 	//	プレイヤーの場合
 	else
 	{
-		//	行動の選択（上下キー）
+		switch(player_select)
+		{
+		case SELECT_MOVE:
+			//	行動の選択（上下キー）
+			if (PushHitKey(KEY_INPUT_UP))
+			{
+				player_move--;
+				if (player_move < 0)
+				{
+					player_move = 2;
+				}
+			}
+			if (PushHitKey(KEY_INPUT_DOWN))
+			{
+				player_move++;
+				if (player_move > 2)
+				{
+					player_move = 0;
+				}
+			}
+			
+			break;
+			//	行動を選択したらスキルの選択
 
-		//	行動を選択したらスキルの選択
+			//	ターゲット選択
 
-		//	ターゲット選択
+			//	パスワードの入力
 
-		//	パスワードの入力
+			//	攻撃
 
-		//	攻撃
-
-			//	ダメージの計算
+				//	ダメージの計算
+		}
 
 
 		//////////////////////////////////////////////////////
@@ -156,6 +177,20 @@ void Scene_play::Render()
 	else
 	{
 		DrawString(100, 120, "味方のターン", GetColor(255, 255, 255));
+	}
+
+	if (!currentIsEnemy)
+	{
+		switch (player_move)
+		{
+		case NOMAL_ATTACK:
+
+			break;
+		case SKILL:
+			break;
+		case GARD:
+			break;
+		}
 	}
 }
 //------------------------------------------------------------------------------

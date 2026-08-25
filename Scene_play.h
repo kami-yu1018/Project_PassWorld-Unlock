@@ -34,6 +34,26 @@ class Scene_play:public Scene_bass
 	int TurnIndex = 0;
 	int enemy_num = 0;
 
+	//	選択の段階を見る
+	enum
+	{
+		SELECT_MOVE,
+		SELECT_SKILL,
+		SELECT_TARGET,
+		PASSWORD,
+		ATTACK
+	};
+	int player_select = 0;
+
+	//	プレイヤーの行動を見る変数
+	enum
+	{
+		NOMAL_ATTACK,
+		SKILL,
+		GARD,
+	};
+	int player_move = 0;
+
 	Scene_setting set_obj;
 
 public:
