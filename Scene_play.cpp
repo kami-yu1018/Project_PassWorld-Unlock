@@ -113,17 +113,40 @@ void Scene_play::Update()
 					player_move = 0;
 				}
 			}
-			
+			//	エンターキーを押したら次に進む
+			if (PushHitKey(KEY_INPUT_RETURN))
+			{
+				switch(player_move)
+				{
+				case NOMAL_ATTACK:
+					player_select = SELECT_TARGET;
+					break;
+				case SKILL:
+					player_select = SELECT_SKILL;
+					break;
+				case GURD:
+					player_select = SELECT_GURD;
+					break;
+				}
+			}
 			break;
 			//	行動を選択したらスキルの選択
-
+		case SELECT_SKILL:
+			break;
 			//	ターゲット選択
-
+		case SELECT_TARGET:
+			break;
 			//	パスワードの入力
-
+		case PASSWORD:
+			break;
 			//	攻撃
-
+		case ATTACK:
 				//	ダメージの計算
+
+			break;
+
+		case SELECT_GURD:
+			break;
 		}
 
 
@@ -184,11 +207,13 @@ void Scene_play::Render()
 		switch (player_move)
 		{
 		case NOMAL_ATTACK:
-
+			DrawString(100, 140, "攻撃", GetColor(255, 255, 255));
 			break;
 		case SKILL:
+			DrawString(100, 140, "スキル", GetColor(255, 255, 255));
 			break;
-		case GARD:
+		case GURD:
+			DrawString(100, 140, "防御", GetColor(255, 255, 255));
 			break;
 		}
 	}

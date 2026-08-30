@@ -41,7 +41,8 @@ class Scene_play:public Scene_bass
 		SELECT_SKILL,
 		SELECT_TARGET,
 		PASSWORD,
-		ATTACK
+		ATTACK,
+		SELECT_GURD
 	};
 	int player_select = 0;
 
@@ -50,7 +51,7 @@ class Scene_play:public Scene_bass
 	{
 		NOMAL_ATTACK,
 		SKILL,
-		GARD,
+		GURD,
 	};
 	int player_move = 0;
 
