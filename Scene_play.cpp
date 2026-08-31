@@ -75,6 +75,7 @@ void Scene_play::Update()
 
 	//	フラグのみを更新（Render側で使うため）
 	currentIsEnemy = actor.isEnemy;
+	nowID = actor.index;
 
 	//	敵の場合
 	if(actor.isEnemy)
@@ -82,7 +83,7 @@ void Scene_play::Update()
 		//	ランダムなターゲティング
 		int random = GetRand(4);
 		//	攻撃
-
+		
 			//	ダメージ計算
 
 		/////////////////////////////////////////////////////
@@ -93,6 +94,60 @@ void Scene_play::Update()
 	//	プレイヤーの場合
 	else
 	{
+		//	エンター入力処理
+		switch (player_select)
+		{
+		case SELECT_MOVE:
+			//	エンターキーを押したら次に進む
+			if (PushHitKey(KEY_INPUT_RETURN))
+			{
+				switch (player_move)
+				{
+				case NOMAL_ATTACK:
+					player_select = SELECT_TARGET;
+					break;
+				case SKILL:
+					player_select = SELECT_SKILL;
+					break;
+				case GURD:
+					player_select = SELECT_GURD;
+					break;
+				}
+			}
+			break;
+			
+		case SELECT_SKILL:
+			break;
+
+		case SELECT_TARGET:
+			//	エンターを押したら次
+			if (PushHitKey(KEY_INPUT_RETURN))
+			{
+				switch (player_move)
+				{
+				case NOMAL_ATTACK:
+					player_select = ATTACK;
+					break;
+
+				case SKILL:
+					player_select = PASSWORD;
+					break;
+				}
+			}
+			break;
+			
+		case PASSWORD:
+			break;
+			
+		case ATTACK:
+			
+			break;
+
+		case SELECT_GURD:
+			break;
+		}
+
+
 		switch(player_select)
 		{
 		case SELECT_MOVE:
@@ -113,35 +168,43 @@ void Scene_play::Update()
 					player_move = 0;
 				}
 			}
-			//	エンターキーを押したら次に進む
-			if (PushHitKey(KEY_INPUT_RETURN))
-			{
-				switch(player_move)
-				{
-				case NOMAL_ATTACK:
-					player_select = SELECT_TARGET;
-					break;
-				case SKILL:
-					player_select = SELECT_SKILL;
-					break;
-				case GURD:
-					player_select = SELECT_GURD;
-					break;
-				}
-			}
 			break;
 			//	行動を選択したらスキルの選択
 		case SELECT_SKILL:
 			break;
 			//	ターゲット選択
 		case SELECT_TARGET:
+			if (PushHitKey(KEY_INPUT_UP))
+			{
+				// 先に安全にデクリメントしてから配列参照
+				do {
+					target = (target - 1 + 3) % 3; // 0..2 にラップ
+				} while (e_alive[target]); // 生存している敵を選ぶなら ! -> false をスキップ
+				
+			}
+			if (PushHitKey(KEY_INPUT_DOWN))
+			{
+				do {
+					target = (target + 1) % 3;
+				} while (e_alive[target]);
+				
+			}
 			break;
 			//	パスワードの入力
 		case PASSWORD:
 			break;
 			//	攻撃
 		case ATTACK:
-				//	ダメージの計算
+			switch (player_move)
+			{
+			case NOMAL_ATTACK:
+				enemy[target]->Data.hp -= CaluculateDamage(player[actor.index]->Data.atk, enemy[target]->Data.def);
+				damage_text= CaluculateDamage(player[actor.index]->Data.atk, enemy[target]->Data.def);
+				break;
+			case SKILL:
+				
+				break;
+			}
 
 			break;
 
@@ -190,7 +253,8 @@ void Scene_play::Render()
 	//	確認テキスト
 	if(enemy[0]!=nullptr)
 	{
-		DrawFormatString(100, 100, GetColor(255, 255, 255), "%s", enemy[0]->Data.Name);
+		DrawFormatString(100, 100, GetColor(255, 255, 255), "%s、%s、%sが現れた！", 
+			enemy[0]->Data.Name,enemy[1]->Data.Name,enemy[2]->Data.Name);
 	}
 
 	if (currentIsEnemy)
@@ -200,20 +264,62 @@ void Scene_play::Render()
 	else
 	{
 		DrawString(100, 120, "味方のターン", GetColor(255, 255, 255));
+		DrawFormatString(250, 120, GetColor(255, 255, 255), "%s", player[nowID]->Data.Name);
 	}
 
 	if (!currentIsEnemy)
 	{
-		switch (player_move)
+		
+		switch (player_select)
 		{
-		case NOMAL_ATTACK:
-			DrawString(100, 140, "攻撃", GetColor(255, 255, 255));
+		case SELECT_MOVE:
+			switch (player_move)
+			{
+			case NOMAL_ATTACK:
+				DrawString(100, 140, "攻撃", GetColor(255, 255, 255));
+				break;
+			case SKILL:
+				DrawString(100, 140, "スキル", GetColor(255, 255, 255));
+				break;
+			case GURD:
+				DrawString(100, 140, "防御", GetColor(255, 255, 255));
+				break;
+			}
 			break;
-		case SKILL:
-			DrawString(100, 140, "スキル", GetColor(255, 255, 255));
+			//	行動を選択したらスキルの選択
+		case SELECT_SKILL:
+			DrawString(100, 140, "スキルを選択してください", GetColor(255, 255, 255));
 			break;
-		case GURD:
-			DrawString(100, 140, "防御", GetColor(255, 255, 255));
+			//	ターゲット選択
+		case SELECT_TARGET:
+			DrawFormatString(100, 140, GetColor(255, 255, 255), "ターゲットを選択してください:%s", enemy[target]->Data.Name);
+			break;
+			//	パスワードの入力
+		case PASSWORD:
+			DrawString(100, 140, "パスワードを入力", GetColor(255, 255, 255));
+			break;
+			//	攻撃
+		case ATTACK:
+			switch (player_move)
+			{
+			case NOMAL_ATTACK:
+				DrawString(100, 140, "攻撃", GetColor(255, 255, 255));
+				DrawFormatString(100, 160, GetColor(255, 255, 255), 
+					"%s に %d ダメージ！",
+					enemy[target]->Data.Name, 
+					damage_text);
+				break;
+			case SKILL:
+				DrawString(100, 140, "スキル", GetColor(255, 255, 255));
+				break;
+			case GURD:
+				DrawString(100, 140, "防御", GetColor(255, 255, 255));
+				break;
+			}
+
+			break;
+
+		case SELECT_GURD:
 			break;
 		}
 	}
@@ -269,7 +375,7 @@ void Scene_play::CreateTurn(int enemy_num)
 //	生きているキャラクターを探しながら次に進める
 void Scene_play::NextTurn(int enemy_num)
 {
-	bool IsAlive[7];
+	bool IsAlive[actor_count];
 	for (int i = 0; i < player_count; ++i)
 	{
 		IsAlive[i] = p_alive[i];

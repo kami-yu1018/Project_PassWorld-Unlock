@@ -4,6 +4,7 @@
 #include"Player.h"
 #include"Enemy.h"
 #include"Scene_setting.h"
+#include"Calculate.h"
 
 class Scene_play:public Scene_bass
 {
@@ -18,6 +19,7 @@ class Scene_play:public Scene_bass
 
 	//	Œ»İ‚Ìƒ^[ƒ“‚ª“G‚©‚Ç‚¤‚©‚ğ”»’f
 	bool currentIsEnemy = false;
+	char nowID;
 
 	//	“G–¡•û‚Ì‡”Ô‚ğŒˆ‚ß‚é—p‚Ì\‘¢‘Ì
 	struct TurnActor
@@ -33,6 +35,9 @@ class Scene_play:public Scene_bass
 	TurnActor turnOrder[actor_count];
 	int TurnIndex = 0;
 	int enemy_num = 0;
+
+	int target = 0;
+	int damage_text = 0;
 
 	//	‘I‘ğ‚Ì’iŠK‚ğŒ©‚é
 	enum
