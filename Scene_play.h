@@ -38,6 +38,7 @@ class Scene_play:public Scene_bass
 
 	int target = 0;
 	int damage_text = 0;
+	int skill_num = 0;
 
 	//	‘I‘ğ‚Ì’iŠK‚ğŒ©‚é
 	enum

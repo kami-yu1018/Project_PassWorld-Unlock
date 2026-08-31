@@ -117,6 +117,10 @@ void Scene_play::Update()
 			break;
 			
 		case SELECT_SKILL:
+			if (PushHitKey(KEY_INPUT_RETURN))
+			{
+				player_select = SELECT_TARGET;
+			}
 			break;
 
 		case SELECT_TARGET:
@@ -171,6 +175,25 @@ void Scene_play::Update()
 			break;
 			//	行動を選択したらスキルの選択
 		case SELECT_SKILL:
+			//	行動の選択（上下キー）
+			if (PushHitKey(KEY_INPUT_UP))
+			{
+				skill_num--;
+				if (skill_num < 0)
+				{
+					skill_num = 2;
+				}
+			}
+			if (PushHitKey(KEY_INPUT_DOWN))
+			{
+				skill_num++;
+
+				if (skill_num > 2)
+				{
+					skill_num = 0;
+				}
+			}
+			
 			break;
 			//	ターゲット選択
 		case SELECT_TARGET:
@@ -288,7 +311,7 @@ void Scene_play::Render()
 			break;
 			//	行動を選択したらスキルの選択
 		case SELECT_SKILL:
-			DrawString(100, 140, "スキルを選択してください", GetColor(255, 255, 255));
+			DrawFormatString(100, 140, GetColor(255, 255, 255), "スキルを選択してください：%s",player[nowID]->Data.skills[skill_num].name);
 			break;
 			//	ターゲット選択
 		case SELECT_TARGET:
