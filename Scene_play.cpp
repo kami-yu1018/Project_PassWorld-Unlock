@@ -135,12 +135,25 @@ void Scene_play::Update()
 
 				case SKILL:
 					player_select = PASSWORD;
+					passwordInputHandle = MakeKeyInput
+					(31,
+						FALSE,
+						FALSE,
+						FALSE
+					);
+					SetActiveKeyInput(passwordInputHandle);
+
 					break;
 				}
 			}
 			break;
 			
 		case PASSWORD:
+			if (PushHitKey(KEY_INPUT_RETURN))
+			{
+				player_select = ATTACK;
+			}
+
 			break;
 			
 		case ATTACK:
@@ -173,6 +186,7 @@ void Scene_play::Update()
 				}
 			}
 			break;
+
 			//	行動を選択したらスキルの選択
 		case SELECT_SKILL:
 			//	行動の選択（上下キー）
@@ -195,6 +209,7 @@ void Scene_play::Update()
 			}
 			
 			break;
+
 			//	ターゲット選択
 		case SELECT_TARGET:
 			if (PushHitKey(KEY_INPUT_UP))
@@ -213,8 +228,19 @@ void Scene_play::Update()
 				
 			}
 			break;
+
 			//	パスワードの入力
 		case PASSWORD:
+			if (CheckKeyInput(passwordInputHandle) == 0)
+			{
+				GetKeyInputString(inputPassword, passwordInputHandle);
+
+				const SkillData& skill = player[actor.index]->Data.skills[skill_num];
+
+				passwordCorrect = std::strcmp(inputPassword, skill.password) == 0;
+				rate = passwordCorrect ? skill.Rate : 0.5f;
+			}
+
 			break;
 			//	攻撃
 		case ATTACK:
@@ -225,6 +251,12 @@ void Scene_play::Update()
 				damage_text= CaluculateDamage(player[actor.index]->Data.atk, enemy[target]->Data.def);
 				break;
 			case SKILL:
+				int bassDamage = CaluculateDamage(player[actor.index]->Data.atk, enemy[target]->Data.def);
+				damage_text = static_cast<int>(bassDamage * rate);
+				enemy[target]->Data.hp -= damage_text;
+					
+				DeleteKeyInput(passwordInputHandle);
+				passwordInputHandle = -1;
 				
 				break;
 			}
@@ -319,7 +351,7 @@ void Scene_play::Render()
 			break;
 			//	パスワードの入力
 		case PASSWORD:
-			DrawString(100, 140, "パスワードを入力", GetColor(255, 255, 255));
+			DrawFormatString(100, 140, GetColor(255, 255, 255), "パスワードを入力：%s", inputPassword);
 			break;
 			//	攻撃
 		case ATTACK:
@@ -333,7 +365,7 @@ void Scene_play::Render()
 					damage_text);
 				break;
 			case SKILL:
-				DrawString(100, 140, "スキル", GetColor(255, 255, 255));
+				DrawString(100, 140, "a", GetColor(255, 255, 255));
 				break;
 			case GURD:
 				DrawString(100, 140, "防御", GetColor(255, 255, 255));

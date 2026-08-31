@@ -5,6 +5,7 @@
 #include"Enemy.h"
 #include"Scene_setting.h"
 #include"Calculate.h"
+#include<cstring>
 
 class Scene_play:public Scene_bass
 {
@@ -39,6 +40,12 @@ class Scene_play:public Scene_bass
 	int target = 0;
 	int damage_text = 0;
 	int skill_num = 0;
+	float rate = 0;
+
+	//	パスワード入力用変数
+	char inputPassword[32] = {};
+	int passwordInputHandle = -1;
+	bool passwordCorrect = false;
 
 	//	選択の段階を見る
 	enum
