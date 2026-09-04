@@ -251,13 +251,13 @@ void Scene_play::Update()
 				damage_text= CaluculateDamage(player[actor.index]->Data.atk, enemy[target]->Data.def);
 				break;
 			case SKILL:
-				int bassDamage = CaluculateDamage(player[actor.index]->Data.atk, enemy[target]->Data.def);
-				damage_text = static_cast<int>(bassDamage * rate);
-				enemy[target]->Data.hp -= damage_text;
-					
+				const SkillData& skill = player[actor.index]->Data.skills[skill_num];
+
+				ApplySkill(*player[actor.index], skill, target, rate);
+
 				DeleteKeyInput(passwordInputHandle);
 				passwordInputHandle = -1;
-				
+
 				break;
 			}
 
@@ -364,9 +364,11 @@ void Scene_play::Render()
 					enemy[target]->Data.Name, 
 					damage_text);
 				break;
+
 			case SKILL:
-				DrawString(100, 140, "a", GetColor(255, 255, 255));
+				DrawFormatString(100, 140, GetColor(255, 255, 255), "%sのスキル発動！　%s", player[nowID]->Data.Name, player[nowID]->Data.skills->name);
 				break;
+
 			case GURD:
 				DrawString(100, 140, "防御", GetColor(255, 255, 255));
 				break;
@@ -444,4 +446,26 @@ void Scene_play::NextTurn(int enemy_num)
 	{
 		TurnIndex = (TurnIndex + 1) % actor_count;
 	} while (!IsAlive[TurnIndex]);
+}
+
+//	スキル効果
+void Scene_play::ApplySkill(Player& caster, const SkillData& skill, int target, float power)
+{
+	switch (skill.effect)
+	{
+	case TYPE_ATTACK:	//	攻撃
+		damage_text = static_cast<int>(CaluculateDamage(caster.Data.atk, enemy[target]->Data.def) * power);
+		enemy[target]->Data.hp -= damage_text;
+		break;
+	case TYPE_HEAL:		//	回復
+		damage_text = static_cast<int>(caster.Data.atk * power);
+		caster.Data.hp += damage_text;
+		break;
+	case TYPE_DEF:		//	防御
+		caster.Data.def += static_cast<int>(caster.Data.def * power);
+		break;
+	case TYPE_BUF:		//	バフ
+		player[target]->Data.atk += static_cast<int>(caster.Data.atk * power);
+		break;
+	}
 }

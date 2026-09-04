@@ -85,4 +85,6 @@ public:
 	void CreateTurn(int enemy_num);
 
 	void NextTurn(int enemy_num);
+
+	void ApplySkill(Player& caster, const SkillData& skill, int target, float power);
 };

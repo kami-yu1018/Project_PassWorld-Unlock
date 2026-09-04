@@ -16,6 +16,7 @@ enum TargetType
 {
 	TARGET_ENEMY_ONE,
 	TARGET_ENEMY_ALL,
+	TARGET_ENEMY_RANDOM,
 	TARGET_PLAYER_ONE,
 	TARGET_PLAYER_ALL,
 };
@@ -30,6 +31,7 @@ struct SkillData
 	EffectType effect;		//	効果タイプ
 	TargetType target;
 	int durationTurn;		//	バフの効果ターン
+	int hitCount;			//	攻撃回数
 };
 
 // プレイヤーのデータ構造体

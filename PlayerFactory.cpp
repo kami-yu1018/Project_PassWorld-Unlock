@@ -5,51 +5,51 @@
 const PlayerData PlayerFactory::PlayerTable[] = {
 	{1,"剣士",70,25,22,18,15, 14,2,5,3,2,
 		{
-			{0,"火炎切り",		"fslash",			1.2,	TYPE_ATTACK,TARGET_ENEMY_ONE, 0 },		//	単体攻撃
-			{1,"クロスブレイク","xbreak",			1.7,	TYPE_ATTACK,TARGET_ENEMY_ONE, 0 },	//	単体２連攻撃
-			{2,"奥義・蒼天斬",	"secret_skybreak",	2.4,	TYPE_ATTACK,TARGET_ENEMY_ONE, 0 }	//	単体特大ダメージ攻撃
+			{0,"火炎切り",		"fslash",			1.2,	TYPE_ATTACK,TARGET_ENEMY_ONE, 0, 1},		//	単体攻撃
+			{1,"クロスブレイク","xbreak",			1.7,	TYPE_ATTACK,TARGET_ENEMY_ONE, 0, 2},	//	単体２連攻撃
+			{2,"奥義・蒼天斬",	"secret_skybreak",	2.4,	TYPE_ATTACK,TARGET_ENEMY_ONE, 0, 1}	//	単体特大ダメージ攻撃
 		}
 	},
 	{2,"魔法使い",45,60,25,8,14, 8,6,5,1,2,
 		{
-			{0,"ファイアボール",		"ball_f",		1.3,TYPE_ATTACK,TARGET_ENEMY_ONE, 0 },		//	単体攻撃
-			{1,"ライトニングスパーク",	"lightvolt",	2.0,TYPE_ATTACK,TARGET_ENEMY_ALL, 0 },		//	全体攻撃
-			{2,"アストラルノヴァ",		"extream_nova",	3.0,TYPE_ATTACK,TARGET_ENEMY_ALL, 0 }		//	全体特大攻撃
+			{0,"ファイアボール",		"ball_f",		1.3,TYPE_ATTACK,TARGET_ENEMY_ONE, 0, 1},		//	単体攻撃
+			{1,"ライトニングスパーク",	"lightvolt",	2.0,TYPE_ATTACK,TARGET_ENEMY_ALL, 0, 1},		//	全体攻撃
+			{2,"アストラルノヴァ",		"extream_nova",	3.0,TYPE_ATTACK,TARGET_ENEMY_ALL, 0, 1}		//	全体特大攻撃
 		}
 	},
 	{3,"僧侶",50,75,15,12,12, 9,7,3,2,1,
 		{
-			{0,"キュアー",		"cure",						1.5,TYPE_HEAL,TARGET_PLAYER_ONE,0},		//	単体回復
-			{1,"ホーリーレイ",	"holy_rain",				1.2,TYPE_HEAL,TARGET_PLAYER_ALL,0},	//	全体回復
-			{2,"リザレクション","praytogod_resurrection",	2.2,TYPE_HEAL,TARGET_PLAYER_ONE,0}	//	復活呪文
+			{0,"キュアー",		"cure",						1.5,TYPE_HEAL,TARGET_PLAYER_ONE,0,1},		//	単体回復
+			{1,"ホーリーレイ",	"holy_rain",				1.2,TYPE_HEAL,TARGET_PLAYER_ALL,0,1},	//	全体回復
+			{2,"リザレクション","praytogod_resurrection",	2.2,TYPE_HEAL,TARGET_PLAYER_ONE,0,1}	//	復活呪文
 		}
 	},
 	{4,"盗賊",50,30,20,10,25, 8,3,4,2,4,
 		{
-			{0,"クイックスタブ",		"quick",			1.0,TYPE_ATTACK,TARGET_ENEMY_ALL,0},		//	全体攻撃
-			{1,"盗賊乱舞",				"randtheaf",		0.9,TYPE_ATTACK,TARGET_ENEMY_ALL,0},		//	ランダム８連攻撃
-			{2,"秘儀・アサシングリード","assassin_deadend",	2.7,TYPE_ATTACK,TARGET_ENEMY_ONE,0}		//	確率即死攻撃
+			{0,"クイックスタブ",		"quick",			1.0,TYPE_ATTACK,TARGET_ENEMY_ALL,0,2},		//	全体攻撃
+			{1,"盗賊乱舞",				"randtheaf",		0.9,TYPE_ATTACK,TARGET_ENEMY_RANDOM,0,8},		//	ランダム８連攻撃
+			{2,"秘儀・アサシングリード","assassin_deadend",	2.7,TYPE_ATTACK,TARGET_ENEMY_ONE,0,1}		//	確率即死攻撃
 		}
 	},
 	{5,"重騎士",110,15,20,30, 5,20,1,4,6,1,
 		{
-			{0,"シールドバニッシュ","banish",				1.3,TYPE_DEF,TARGET_PLAYER_ALL,3},	//	単体攻撃、全体防御強化
-			{1,"不屈の甲冑",		"presis_armor",			2.0,TYPE_DEF,TARGET_PLAYER_ONE,2},	//	単体強化＆ターゲット化
-			{2,"不落の鉄壁",		"no_break_irondefense",	5.0,TYPE_DEF,TARGET_PLAYER_ONE,1}	//	単体バリア
+			{0,"シールドバニッシュ","banish",				1.3,TYPE_DEF,TARGET_PLAYER_ALL,3,1},	//	単体攻撃、全体防御強化
+			{1,"不屈の甲冑",		"presis_armor",			2.0,TYPE_DEF,TARGET_PLAYER_ONE,2,1},	//	単体強化＆ターゲット化
+			{2,"不落の鉄壁",		"no_break_irondefense",	5.0,TYPE_DEF,TARGET_PLAYER_ONE,1,1}	//	単体バリア
 		}
 	},
 	{6,"武士",65,20,28,14,20, 13,2,6,2,3,
 		{
-			{0,"居合切り",			"iai",						1.4,TYPE_ATTACK,TARGET_ENEMY_ONE,0},
-			{1,"桜花一閃",			"cherry_one",				2.0,TYPE_ATTACK,TARGET_ENEMY_ONE,0},
-			{2,"桜家秘刀・散華満月","secretblead_fullmoonbloom",3.2,TYPE_ATTACK,TARGET_ENEMY_ONE,0}
+			{0,"居合切り",			"iai",						1.4,TYPE_ATTACK,TARGET_ENEMY_ONE,0,1},
+			{1,"桜花一閃",			"cherry_one",				2.0,TYPE_ATTACK,TARGET_ENEMY_ONE,0,1},
+			{2,"桜家秘刀・散華満月","secretblead_fullmoonbloom",3.2,TYPE_ATTACK,TARGET_ENEMY_ONE,0,1}
 		}
 	},
 	{7,"吟遊詩人",55,50,12,14,18, 10,5,2,2,2,
 		{
-			{0,"マーチングメロディ",	"melo_marching",		1.3,TYPE_BUF,TARGET_PLAYER_ALL,3},	//	味方攻撃力バフ
-			{1,"シャドウメロディ",		"melo_shadow",			0.8,TYPE_BUF,TARGET_ENEMY_ALL,3},		//	敵攻撃力デバフ
-			{2,"戯曲・FreedomWorld",	"act_freedom_world_all",1.5,TYPE_BUF,TARGET_PLAYER_ALL,3}	//	全体バフ
+			{0,"マーチングメロディ",	"melo_marching",		1.3,TYPE_BUF,TARGET_PLAYER_ALL,3,1},	//	味方攻撃力バフ
+			{1,"シャドウメロディ",		"melo_shadow",			0.8,TYPE_BUF,TARGET_ENEMY_ALL,3,1},		//	敵攻撃力デバフ
+			{2,"戯曲・FreedomWorld",	"act_freedom_world_all",1.5,TYPE_BUF,TARGET_PLAYER_ALL,3,1}	//	全体バフ
 		}
 	}
 };
