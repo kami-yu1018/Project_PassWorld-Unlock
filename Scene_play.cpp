@@ -454,8 +454,7 @@ void Scene_play::ApplySkill(Player& caster, const SkillData& skill, int target, 
 	switch (skill.effect)
 	{
 	case TYPE_ATTACK:	//	攻撃
-		damage_text = static_cast<int>(CaluculateDamage(caster.Data.atk, enemy[target]->Data.def) * power);
-		enemy[target]->Data.hp -= damage_text;
+		ApplyAttackSkill(caster, skill, target, power);
 		break;
 	case TYPE_HEAL:		//	回復
 		damage_text = static_cast<int>(caster.Data.atk * power);
@@ -468,4 +467,71 @@ void Scene_play::ApplySkill(Player& caster, const SkillData& skill, int target, 
 		player[target]->Data.atk += static_cast<int>(caster.Data.atk * power);
 		break;
 	}
+}
+
+//	攻撃スキルの各ターゲットごとの適用
+void Scene_play::ApplyAttackSkill(
+	Player& caster,
+	const SkillData& skill,
+	int selectedTarget,
+	float power)
+{
+	for (int hit = 0; hit < skill.hitCount; ++hit)
+	{
+		int targetIndex = selectedTarget;
+
+		switch (skill.target)
+		{
+		case TARGET_ENEMY_ONE:
+			ApplyDamage(caster, targetIndex, power);
+			break;
+
+		case TARGET_ENEMY_ALL:
+			for (int i = 0; i < enemy_num; ++i)
+			{
+				if (e_alive[i])
+				{
+					ApplyDamage(caster, i, power);
+				}
+			}
+			break;
+
+		case TARGET_ENEMY_RANDOM:
+			targetIndex = GetRandomAliveEnemy();
+			if (targetIndex >= 0)
+			{
+				ApplyDamage(caster, targetIndex, power);
+			}
+			break;
+		}
+	}
+}
+
+void Scene_play::ApplyDamage(Player& caster, int targetIndex, float power)
+{
+	int baseDamage = CaluculateDamage(caster.Data.atk, enemy[targetIndex]->Data.def);
+
+	int damage = static_cast<int>(baseDamage * power);
+	enemy[targetIndex]->Data.hp -= damage;
+
+	if (enemy[targetIndex]->Data.hp <= 0)
+	{
+		enemy[target]->Data.hp = 0;
+		e_alive[targetIndex] = false;
+	}
+}
+
+int Scene_play::GetRandomAliveEnemy()
+{
+	int aliveIndexes[3];
+	int count = 0;
+
+	for (int i = 0; i < enemy_num; ++i)
+	{
+		if (e_alive[i])
+		{
+			aliveIndexes[count++] = i;
+		}
+	}
+	return count > 0 ? aliveIndexes[GetRand(count - 1)] : -1;
 }

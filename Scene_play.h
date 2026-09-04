@@ -87,4 +87,9 @@ public:
 	void NextTurn(int enemy_num);
 
 	void ApplySkill(Player& caster, const SkillData& skill, int target, float power);
+
+	void ApplyAttackSkill(Player& caster, const SkillData& skill, int selectedTarget, float power);
+	void ApplyDamage(Player& caster, int targetIndex, float power);
+	int GetRandomAliveEnemy();
+
 };
