@@ -4,12 +4,20 @@
 //	スキル数
 constexpr int SKILL_COUNT = 3;
 
-enum
+enum EffectType
 {
 	TYPE_ATTACK,
 	TYPE_DEF,
 	TYPE_HEAL,
 	TYPE_BUF,
+};
+
+enum TargetType
+{
+	TARGET_ENEMY_ONE,
+	TARGET_ENEMY_ALL,
+	TARGET_PLAYER_ONE,
+	TARGET_PLAYER_ALL,
 };
 
 //	スキルデータ
@@ -19,7 +27,9 @@ struct SkillData
 	const char* name;		//	スキル名
 	const char* password;	//	パスワード
 	float Rate;				//	倍率
-	int ratetype;			//	効果タイプ
+	EffectType effect;		//	効果タイプ
+	TargetType target;
+	int durationTurn;		//	バフの効果ターン
 };
 
 // プレイヤーのデータ構造体
