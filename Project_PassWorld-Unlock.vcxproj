@@ -129,10 +129,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Calculate.cpp" />
+    <ClCompile Include="Calculate.h" />
     <ClCompile Include="EnemyFactory.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PlayerFactory.cpp" />
+    <ClCompile Include="Scene_end.cpp" />
+    <ClCompile Include="Scene_level.cpp" />
+    <ClCompile Include="Scene_play.cpp" />
+    <ClCompile Include="Scene_setting.cpp" />
+    <ClCompile Include="Scene_title.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Data.h" />
@@ -141,6 +148,12 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Scene_bass.h" />
+    <ClInclude Include="Scene_end.h" />
+    <ClInclude Include="Scene_level.h" />
+    <ClInclude Include="Scene_play.h" />
+    <ClInclude Include="Scene_setting.h" />
+    <ClInclude Include="Scene_title.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

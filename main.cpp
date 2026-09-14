@@ -1,5 +1,9 @@
 #include "main.h"
+#include "Game.h"
 
+//	変数
+char key_buffer[256];
+int KeyFrame[256];
 //------------------------------------------------------------------------------
 //	WinMain
 //------------------------------------------------------------------------------
@@ -37,6 +41,9 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		KeyFrame[i] = 0;
 	}
 
+	//　ゲームクラスのインスタンスを生成
+	Game game_obj;
+
 	//===============================================
 	//	ゲームループ
 	//===============================================
@@ -68,20 +75,33 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		//	画面上の描画を初期化
 		ClearDrawScreen();
 
+		//	ゲームの更新処理
+		game_obj.Update();
+		//	ゲームの描画処理
+		game_obj.Render();
+
 		//	リフレッシュレートが一定になるまで待つ処理
 		while(clock()<check_fps){}
 
 		//	裏画面の描画を表に反映
 		ScreenFlip();
 
-		//	ループを抜ける
-
+		//	ESC+CTRLでゲームを修了する処理
+		if (CheckHitKey(KEY_INPUT_ESCAPE) == 1)
+		{
+			if (CheckHitKey(KEY_INPUT_LCONTROL) || CheckHitKey(KEY_INPUT_RCONTROL))
+			{
+				break;
+			}
+		}
 	}
 
 	//===============================================
 	//	終了処理
 	//===============================================
-	
+	//　ゲームの終了処理
+	game_obj.Exit();
+
 	//	ＤＸライブラリ使用の終了処理
 	DxLib_End();
 

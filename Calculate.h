@@ -1,0 +1,1 @@
+int CaluculateDamage(int actor_ATK, int target_DEF);
