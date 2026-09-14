@@ -344,6 +344,14 @@ void Scene_play::Render()
 			//	行動を選択したらスキルの選択
 		case SELECT_SKILL:
 			DrawFormatString(100, 140, GetColor(255, 255, 255), "スキルを選択してください：%s",player[nowID]->Data.skills[skill_num].name);
+
+			if (CheckHitKey(KEY_INPUT_LSHIFT))
+			{
+				DrawFormatString(100,800,GetColor(255,255,255),"S1:%s",player[nowID]->Data.skills[0].password);
+				DrawFormatString(100, 820, GetColor(255, 255, 255), "S2:%s", player[nowID]->Data.skills[1].password);
+				DrawFormatString(100, 840, GetColor(255, 255, 255), "S3:%s", player[nowID]->Data.skills[2].password);
+			}
+
 			break;
 			//	ターゲット選択
 		case SELECT_TARGET:
